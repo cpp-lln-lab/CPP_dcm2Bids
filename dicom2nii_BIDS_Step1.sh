@@ -7,7 +7,7 @@
 # To install dcm2bids: https://pypi.org/project/dcm2bids/
 
 # BIDS outout folder
-BIDSOutputFolder=/Users/mohamed/Desktop/BIDS_V4/
+BIDSOutputFolder=/Volumes/SanDisk/Workshop/visMotion_V3
 
 # if BIDSOutputFolder does not exist
 if [ ! -d $BIDSOutputFolder ]; then
@@ -18,10 +18,10 @@ fi
 ##############   GROUP 1   #############
 ########################################
 # Subject Names (folder names)
-#Subjs=("GeAl"	"MaGa"	"OlCo"	"PiMa"	"SyNo"	"ViCh"	"WiAu" "JoFr"	"MpLa"	"PhAL"	"SiGi"	"VaLa"	"ViCr")
-Subjs=("GeAl"	"MaGa") #	"OlCo"	"PiMa"	"SyNo"	"ViCh"	"WiAu" "JoFr"	"MpLa"	"PhAL"	"SiGi"	"VaLa"	"ViCr")
-group='con'     # Group
-dicomsRootFolder=/Data/Neurocat_BIDS/DICOMS/Control/      # DICOMS root folder
+Subjs=("AlSo"	"BrCh") #	"OlCo"	"PiMa"	"SyNo"	"ViCh"	"WiAu" "JoFr"	"MpLa"	"PhAL"	"SiGi"	"VaLa"	"ViCr")
+SubjsNumbers=("2" "3")
+group=''     # Group
+dicomsRootFolder=/Volumes/SanDisk/Workshop/visMotion_V3/sourcedata/    # DICOMS root folder
 
 ########################################
 ##############   GROUP 2   #############
