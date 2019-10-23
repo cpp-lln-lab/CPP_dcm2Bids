@@ -104,7 +104,7 @@ do
     file=$BIDSOutputFolder'/sub-'$group$iSubNum'/ses-01''/func/''sub-'$group$iSubNum'_ses-01_task-'$taskName'_bold.nii.gz'
     echo $file
     cd $WD
-    python removeDummies.py $file $numDummies $deleteOriginal
+    python remove_dummies.py $file $numDummies $deleteOriginal
     cd $BIDSOutputFolder
 
 
