@@ -18,16 +18,16 @@ fi
 ##############   GROUP 1   #############
 ########################################
 # Subject Names (folder names)
-Subjs=("AlSo"	"BrCh") #	"OlCo"	"PiMa"	"SyNo"	"ViCh"	"WiAu" "JoFr"	"MpLa"	"PhAL"	"SiGi"	"VaLa"	"ViCr")
-SubjsNumbers=("2" "3")
-group=''     # Group
+#Subjs=("AlSo"	"BrCh") #	"OlCo"	"PiMa"	"SyNo"	"ViCh"	"WiAu" "JoFr"	"MpLa"	"PhAL"	"SiGi"	"VaLa"	"ViCr")
+#SubjsNumbers=("2" "3")
+#group=''     # Group
 dicomsRootFolder=/Volumes/SanDisk/Workshop/visMotion_V3/sourcedata/    # DICOMS root folder
 
 ########################################
 ##############   GROUP 2   #############
 ########################################
 #Subjs=("AlBo"	"CaBa"	"CaPi"	"ChRe"	"IaWa"	"JoSn"	"MiDo"	"NaAs"	"SaAt"	"WiSn"	"ZaCr")
-##Subjs=("AlBo"	"CaBa")
+#Subjs=("AlBo"	"CaBa")
 #group='cat'
 #dicomsRootFolder=/Data/Neurocat_BIDS/DICOMS/Cataract/      # DICOMS root folder
 
