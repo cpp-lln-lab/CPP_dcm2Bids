@@ -59,7 +59,7 @@ def remove_dummies(nifti_file, num_dummies, show_header=0, delete_original=0):
         print('Original nifti with dummies deleted: ' + nifti_file)
 
 
-print('nifti file= ' + NIFTI_FILE)
-print('number of Dummies= ' + str(NUM_DUMMIES))
+print('nifti file = ' + NIFTI_FILE)
+print('number of Dummies = ' + str(NUM_DUMMIES))
 
 remove_dummies(NIFTI_FILE, NUM_DUMMIES)
