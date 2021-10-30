@@ -1,0 +1,15 @@
+{
+    "descriptions": [
+        {
+            "dataType": "func",
+            "modalityLabel": "bold",
+            "customLabels": "task-oneback_run-1",
+            "criteria": {
+                "SeriesDescription": "func_task-oneback_run-1"
+            },
+            "sidecarChanges": {
+                "TaskName": "one back"
+            }
+        }
+    ]
+}
