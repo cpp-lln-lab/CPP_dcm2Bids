@@ -1,0 +1,17 @@
+name: dcm2bids
+
+channels:
+  - default
+  - conda-forge
+
+dependencies:
+  - python=3.9.*
+  - pip
+  - git
+  - git-annex
+  - nibabel
+  - black
+  - datalad
+  - dcm2niix
+  - dcm2bids
+  - pre-commit
