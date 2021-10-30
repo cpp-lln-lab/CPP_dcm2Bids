@@ -25,16 +25,30 @@ conda env create -f environment.yml
 source activate dcm2bids
 ```
 
+## Usage
+
+In general for more information check the
+[Dcm2Bids tutorial](https://unfmontreal.github.io/Dcm2Bids/docs/2-tutorial/).
+
 ### Step 1
+
+---
+**GOALS**
+- DICOM to NIfTI conversion
+- extracting the content of the DICOM headers into json files
+---
 
 - Open the shell script `dicom2nii_BIDS_Step1.sh` in your preferred text editor.
 - Change your desired BIDS output directory.
 - Add the different groups of subjects and their names, and DICOM locations
-- Run the `dicom2nii_BIDS_Step1.sh` in the terminal:
+- Run the `dicom2nii_BIDS_Step1.sh` in the terminal
+```
   `./sh dicom2nii_BIDS_Step1.sh`
+```
 - Go to your BIDS output directory and then to the `tmp_dcm2bids` folder
 - Open the `json` files of the different conditions and get the
-  `_SERIES DISCRIPTION_` , eg: `SeriesDescription: "Motion"` --> here the Series description is Motion.
+  `_SERIES DISCRIPTION_` , for example: `SeriesDescription: "Motion"` --> here the Series
+  description is Motion.
 - Create a new `json` file called `config.json` in the BIDS output directory.
   Add the conditions indicating the series description. Check the `config.json`
   for examples and the `config_json_template_different_modalities.json` for all
