@@ -7,8 +7,6 @@ source config.sh
 
 cd ${bids_output_folder}
 
-pwd
-
 # dcm2bids_scaffold creates the neccessary folders and files for the BIDS structure
 dcm2bids_scaffold
 

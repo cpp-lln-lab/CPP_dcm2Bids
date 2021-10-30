@@ -5,8 +5,8 @@
 
 bids_output_folder=/Volumes/SanDisk/Workshop/visMotion_V3
 
-numDummies=4        # Number of dummies to remove
-deleteOriginal=1    # Delete original after removing dummies
+number_dummies=4        # Number of dummies to remove
+delete_original=1    # Delete original after removing dummies
 
 ########################################
 ##############   GROUP 1   #############
@@ -74,7 +74,7 @@ do
   file=$bids_output_folder'/sub-'$group$sub_nb'/ses-01''/func/''sub-'$group$sub_nb'_ses-01_task-'$taskName'_bold.nii.gz'
   echo $file
   cd $WD
-  python remove_dummies.py $file $numDummies $deleteOriginal
+  python remove_dummies.py $file $number_dummies $delete_original
   cd $bids_output_folder
 
   ## 3. ADD OTHER EXPERIMENTS IF NEEDED BY COPYING ONE OF THE ABOVE
