@@ -16,7 +16,7 @@
                 "SeriesDescription": "*Motion*"
             },
             "sidecarChanges": {
-                "SeriesDescription": "*Motion*"
+                "TaskName": "visMotion"
             }
         }
     ]

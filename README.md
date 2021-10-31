@@ -20,6 +20,8 @@ following links:
 
 ### Set up environment
 
+Most of the dependencies should be taken care of by the conda `environment.yml`.
+
 ```
 conda env create -f environment.yml
 source activate dcm2bids

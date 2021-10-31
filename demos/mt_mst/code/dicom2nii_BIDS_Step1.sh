@@ -10,6 +10,8 @@ cd ${bids_output_folder}
 # dcm2bids_scaffold creates the neccessary folders and files for the BIDS structure
 dcm2bids_scaffold
 
+dicoms_folder=${dicoms_folder}/mri
+
 ## DICOM to NIfTI conversion
 
 # Run the `dcm2bids_helper -d ${dicoms_folder}`

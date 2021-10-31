@@ -5,7 +5,7 @@
 
 source config.sh
 
-dcm2bids -d ${dicoms_folder} -p ${subject_label} -c ${config_file} -o ${bids_output_folder}
+dcm2bids --dicom_dir ${dicoms_folder} -p ${subject_label} -c ${config_file} -o ${bids_output_folder}
 
 rm -rf ${bids_output_folder}/tmp_dcm2bids
 
