@@ -1,0 +1,33 @@
+{
+    "descriptions": [
+        {
+            "dataType": "func",
+            "modalityLabel": "bold",
+            "customLabels": "task-rest",
+            "criteria": {
+                "SeriesDescription": "*Axial EPI-FMRI (Interleaved I to S)*"
+            },
+            "sidecarChanges": {
+                "TaskName": "rest"
+            }
+        },
+        {
+            "dataType": "fmap",
+            "modalityLabel": "epi",
+            "customLabels": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "*EPI PE=AP*"
+            },
+            "intendedFor": 0
+        },
+        {
+            "dataType": "fmap",
+            "modalityLabel": "epi",
+            "customLabels": "dir-PA",
+            "criteria": {
+                "SeriesDescription": "*EPI PE=PA*"
+            },
+            "intendedFor": 0
+        }
+    ]
+}

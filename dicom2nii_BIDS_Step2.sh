@@ -1,114 +1,81 @@
+#!/usr/bin/env bash
+
 # to run the script, open the terminal and run:
 # sh./ dicom2nii_BIDS_Step2.sh
 
+source config.sh
 
-# The following script using dcm2bids and dcm2niix to convert DICOMS
-# to a BIDS compaitable format.
-# To install dcm2bids: https://pypi.org/project/dcm2bids/
+subjects=("AlSo" "BrCh")
+subjects_numbers=("2" "3")
 
-# BIDS outout folder
-BIDSOutputFolder=/Volumes/SanDisk/Workshop/visMotion_V3
+WD=`pwd`
 
-# if BIDSOutputFolder does not exist
-if [ ! -d $BIDSOutputFolder ]; then
-  mkdir -p $BIDSOutputFolder;    # Create directory
-fi
+cd ${bids_output_folder}
 
-numDummies=4        # Number of dummies to remove
-deleteOriginal=1    # Delete original after removing dummies
-########################################
-##############   GROUP 1   #############
-########################################
-# Subject Names (folder names)
-Subjs=("AlSo"	"BrCh") #	"OlCo" "PiMa"	"SyNo"	"ViCh"	"WiAu" "JoFr"	"MpLa"	"PhAL" "SiGi"	"VaLa"	"ViCr")
-SubjsNumbers=("2" "3")
-group=''     # Group
-dicomsRootFolder=/Volumes/SanDisk/Workshop/visMotion_V3/sourcedata/    # DICOMS root folder
+nb_subjects=${#subjects[@]}
+echo 'Number of Subjects: '${nb_subjects}
 
-WD=$(pwd)
-########################################
-##############   GROUP 2   #############
-########################################
-#Subjs=("AlBo"	"CaBa"	"CaPi"	"ChRe"	"IaWa"	"JoSn"	"MiDo"	"NaAs"	"SaAt"	"WiSn"	"ZaCr")
-##Subjs=("AlBo"	"CaBa")
-#group='cat'
-#dicomsRootFolder=/Data/Neurocat_BIDS/DICOMS/Cataract/      # DICOMS root folder
-
-########################################
-
-# Go to the BIDS output directory
-cd $BIDSOutputFolder
-
-# dcm2bids_scaffold creates the neccessary folders and files for the BIDS structure
-#dcm2bids_scaffold
-
-# Run the dcm2bids_helper -d $dicomsRootFolder on a couple of subjects to get the information regarding
-# the name of the conditions and files.
-# This information will used in the config.json file
-#dcm2bids_helper -d $dicomsRootFolder
-
-#echo "##############################################################"
-#echo "Create the config.json in the BIDS output directory."
-#echo "and add the required information before running step 2 "
-#echo "The information is available in tmp_dcm2bids json files"
-#echo "##############################################################"
-
-# MAKE SURE THAT YOU HAVE THE config.json file ready at this step and filled correctly for the different
-# experiment names.
-
-# Get the number of the subjects in the group
-NrSubjs=${#Subjs[@]}
-echo 'Number of Subjects: '$NrSubjs
-
-## loop through the different subjects
 # for loop that iterates over each element in arr
-# for iSub in "${!Subjs[@]}" #{1..$NrSubjs}
-# do
-#    iSubNum="$(printf "%02d" $(($iSub+1)))"  # Get the subject Number
-#    SubName="${Subjs[iSub]}"                 # Get the subject Name
-for iSub in "${!Subjs[@]}" #{1..$NrSubjs}
+for iSub in "${!subjects[@]}" #{1..${nb_subjects}}
 do
-    iSubName="${Subjs[$iSub]}"
-    iSubNum="${SubjsNumbers[$iSub]}"
-    iSubNum="$(printf "%02d" $iSubNum)"  # Get the subject Number
-    echo 'Subject Name:' $iSubName " - ID:"$iSubNum
-# For every condition you have, add the following block of code to get the DICOM location
 
-## 1. ANATOMICAL
+    sub_name="${subjects[${iSub}]}"
+    sub_nb="${subjects_numbers[${iSub}]}"
+    sub_nb="$(printf "%02d" ${sub_nb})"
+    echo 'Subject Name:' ${sub_name} " - ID:"${sub_nb}
+
+    # For every condition you have, add the following block of code to get the DICOM location
+
+    ##############################################################################
+    # dcm2bids inputs:
+    #
+    # dcm2bids -d ${sub_dicom_folder} \
+    #          -p ${sub_label} \
+    #          -s ${ses_label} \
+    #          -c config.json \
+    #          -o ${bids_output_folder}
+    #
+    # -d Dicom path
+    # -p Partipiant label
+    # -s Session label
+    # -o Output directory for the nifti files
+    # -c Configuration json file that should be present in the output directory
+    ##############################################################################
+
+    ## 1. ANAT
     # the directory to the dicom files (needs to be changed according to your dicom location and name)
-    subDicomFolder=$dicomsRootFolder'Anatomical/'$iSubName           ## <---------- CHANGE THE LOCATION
-    #subOutputFolder=$BIDSOutputFolder
-    #echo $SubName $iSubNum $subOutputFolder
-    echo "DICOMS folder is: "$subDicomFolder
-    echo "Output folder is: "$BIDSOutputFolder
-    dcm2bids -d $subDicomFolder -p $group$iSubNum -s 01 -c config.json -o $BIDSOutputFolder
+    sub_dicom_folder=${dicoms_folder}'Anatomical/'${sub_name}           ## <---------- CHANGE THE LOCATION
 
-################################################################################
-# dcm2bids inputs:
-# dcm2bids -d $subDicomFolder -p $group$iSubNum -s 01 -c config.json -o $BIDSOutputFolder
-# -d : DICOM PATH
-# -p Partipiant name/number and the (group)
-# -s Session number
-# -o output directory for the nifti files
-# -c Configuration json file that should be present in the output directory
-################################################################################
+    echo "DICOMS folder is: "${sub_dicom_folder}
+    echo "Output folder is: "${bids_output_folder}
 
-    ## 2. Functional data - Name of the experiment: DECODING
-    subDicomFolder=$dicomsRootFolder'Control/'$iSubName                 ## <---------- CHANGE THE LOCATION
+    dcm2bids -d ${sub_dicom_folder} \
+    -p ${sub_nb} \
+    -s 01 \
+    -c ${config_file} \
+    -o ${bids_output_folder}
+
+    ## 2. FUNC
     taskName='visMotion'                                                ## <---------- CHANGE THE TASK NAME
-    echo "DICOMS folder is: "$subDicomFolder
-    echo "Output folder is: "$BIDSOutputFolder
-    dcm2bids -d $subDicomFolder -p $group$iSubNum -s 01 -c config.json -o $BIDSOutputFolder
 
-    # remove Dummies
-    file=$BIDSOutputFolder'/sub-'$group$iSubNum'/ses-01''/func/''sub-'$group$iSubNum'_ses-01_task-'$taskName'_bold.nii.gz'
-    echo $file
+    sub_dicom_folder=${dicoms_folder}'Control/'${sub_name}              ## <---------- CHANGE THE LOCATION
+
+    echo "DICOMS folder is: "${sub_dicom_folder}
+    echo "Output folder is: "${bids_output_folder}
+
+    dcm2bids -d ${sub_dicom_folder} \
+    -p ${sub_nb} \
+    -s 01 \
+    -c ${config_file} \
+    -o ${bids_output_folder}
+
+    ### remove dummies
+    file=${bids_output_folder}'/sub-'${sub_nb}'/ses-01/func/sub-'${sub_nb}'_ses-01_task-'${taskName}'_bold.nii.gz'
+    echo ${file}
     cd $WD
-    python remove_dummies.py $file $numDummies $deleteOriginal
-    cd $BIDSOutputFolder
+    python remove_dummies.py ${file} ${number_dummies} ${delete_original}
+    cd ${bids_output_folder}
 
-
-  ## 3. ADD OTHER EXPERIMENTS IF NEEDED BY COPYING ONE OF THE ABOVE
-
+    ## 3. ADD OTHER EXPERIMENTS IF NEEDED BY COPYING ONE OF THE ABOVE
 
 done

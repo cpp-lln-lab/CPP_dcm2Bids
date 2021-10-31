@@ -1,0 +1,56 @@
+{
+    "searchMethod": "fnmatch",
+    "descriptions": [
+        {
+            "dataType": "anat",
+            "modalityLabel": "T1w",
+            "criteria": {
+                "SeriesDescription": "*MPRAGE*"
+            }
+        },
+        {
+            "dataType": "func",
+            "modalityLabel": "bold",
+            "customLabels": "task-VisualMotion",
+            "criteria": {
+                "SeriesDescription": "*VisMotion_Localiser*"
+            },
+            "sidecarChanges": {
+                "TaskName": "Visual Motion"
+            }
+        },
+        {
+            "dataType": "func",
+            "modalityLabel": "bold",
+            "customLabels": "task-VisualMotion_dir-reversed",
+            "criteria": {
+                "SeriesDescription": "*_ima_VisMotion_correction_*"
+            },
+            "sidecarChanges": {
+                "TaskName": "Visual Motion"
+            }
+        },
+        {
+            "dataType": "func",
+            "modalityLabel": "bold",
+            "customLabels": "task-AuditoryMotion",
+            "criteria": {
+                "SeriesDescription": "*AudMotion_Localiser*"
+            },
+            "sidecarChanges": {
+                "TaskName": "Auditory Motion"
+            }
+        },
+        {
+            "dataType": "func",
+            "modalityLabel": "bold",
+            "customLabels": "task-AuditoryMotion_dir-reversedPhase",
+            "criteria": {
+                "SeriesDescription": "*_ima_AudMotion_correction_*"
+            },
+            "sidecarChanges": {
+                "TaskName": "Auditory Motion"
+            }
+        }
+    ]
+}

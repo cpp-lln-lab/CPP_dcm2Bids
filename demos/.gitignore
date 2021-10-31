@@ -1,0 +1,8 @@
+sourcedata
+tmp_dcm2bids
+sub*
+
+CHANGES
+README
+participants.*
+dataset_description.json
