@@ -5,6 +5,7 @@ The following script will take a 4D nifti images and
 will remove the requested number of volumes in the 4th dimension
 """
 
+
 import sys
 import os
 
@@ -12,7 +13,7 @@ import nibabel as nib
 
 # Get the input from the shell/bash script and assign them as variables
 
-print("Running the script: " + sys.argv[0])
+print(f"Running the script: {sys.argv[0]}")
 
 nifti_file = sys.argv[1]  # display the filename
 num_dummies = int(sys.argv[2])  # display the number of dummies to remove
@@ -62,13 +63,13 @@ def remove_dummies(nifti_file, num_dummies, show_header=0, delete_original=0):
     # if requested to delete the original nii.gz 4D file with the dummies
     if delete_original:
         os.remove(nifti_file)
-        print("Original nifti with dummies deleted: " + nifti_file)
+        print(f"Original nifti with dummies deleted: {nifti_file}")
 
 
 def main(nifti_file, num_dummies, delete_original):
 
-    print("nifti file = " + nifti_file)
-    print("number of Dummies = " + str(num_dummies))
+    print(f"nifti file = {nifti_file}")
+    print(f"number of Dummies = {str(num_dummies)}")
 
     remove_dummies(nifti_file, num_dummies, delete_original)
 
