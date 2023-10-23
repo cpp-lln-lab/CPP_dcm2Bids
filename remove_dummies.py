@@ -21,7 +21,6 @@ delete_original = int(sys.argv[3])  # Delete original (with dummies) :1/0
 
 
 def remove_dummies(nifti_file, num_dummies, show_header=0, delete_original=0):
-
     img = nib.load(nifti_file)
 
     path, file = os.path.split(nifti_file)
@@ -67,7 +66,6 @@ def remove_dummies(nifti_file, num_dummies, show_header=0, delete_original=0):
 
 
 def main(nifti_file, num_dummies, delete_original):
-
     print(f"nifti file = {nifti_file}")
     print(f"number of Dummies = {str(num_dummies)}")
 
@@ -75,5 +73,4 @@ def main(nifti_file, num_dummies, delete_original):
 
 
 if __name__ == "__main__":
-
     main()
