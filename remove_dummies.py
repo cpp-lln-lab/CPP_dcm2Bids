@@ -5,7 +5,6 @@ The following script will take a 4D nifti images and
 will remove the requested number of volumes in the 4th dimension
 """
 
-
 import sys
 import os
 
